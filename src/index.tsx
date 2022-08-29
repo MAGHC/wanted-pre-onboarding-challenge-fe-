@@ -5,7 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 
 import { ThemeProvider } from "styled-components";
-import { ResetStyle, commonStyle } from "@/lib/style";
+import { ResetStyle, commonStyle } from "@/lib/Style";
 import { RecoilRoot } from "recoil";
 
 const app = ReactDOM.createRoot(document.getElementById("app") as HTMLElement);
