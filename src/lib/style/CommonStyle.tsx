@@ -1,1 +1,13 @@
-export const commonStyle = {};
+import { DefaultTheme } from "styled-components";
+
+export const commonStyle: DefaultTheme = {
+  color: {
+    primary: "e3f2fd",
+    primaryLight: "ffffff",
+    primaryDark: "b1bfca",
+    secondary: "#fafafa",
+    secondaryLight: "#ffffff",
+    secondaryDark: "#c7c7c7",
+    font: "#424242",
+  },
+};
