@@ -4,6 +4,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 
+import { ThemeProvider } from "styled-components";
+import { ResetStyle, commonStyle } from "@/lib/style";
 import { RecoilRoot } from "recoil";
 
 const app = ReactDOM.createRoot(document.getElementById("app") as HTMLElement);
@@ -11,7 +13,10 @@ app.render(
   <React.StrictMode>
     <RecoilRoot>
       <BrowserRouter>
-        <App />
+        <ThemeProvider theme={commonStyle}>
+          <ResetStyle />
+          <App />
+        </ThemeProvider>
       </BrowserRouter>
     </RecoilRoot>
   </React.StrictMode>
