@@ -5,7 +5,8 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 
 import { ThemeProvider } from "styled-components";
-import { ResetStyle, commonStyle } from "@/lib/Style";
+
+import { commonStyle, ResetStyle } from "./lib/Styles";
 
 import { RecoilRoot } from "recoil";
 

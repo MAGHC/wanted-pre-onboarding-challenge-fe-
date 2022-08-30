@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
+const Wrapper = styled.div``;
+
 const Login = () => {
-  return <div></div>;
+  return <Wrapper>mixin 먹는지 확인</Wrapper>;
 };
 
 export default Login;

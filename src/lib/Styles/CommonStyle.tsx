@@ -10,4 +10,14 @@ export const commonStyle: DefaultTheme = {
     secondaryDark: "#c7c7c7",
     font: "#424242",
   },
+
+  mixin: {
+    center: () => {
+      return `
+            display:flex,
+            justify-content:center, 
+            align-items:center
+        `;
+    },
+  },
 };
