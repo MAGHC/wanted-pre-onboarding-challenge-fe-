@@ -1,2 +1,2 @@
-export { commonStyle } from "./CommonStyle";
+export { styled } from "./styled";
 export { ResetStyle } from "./ResetStyle";

@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import { ThemeProvider } from "styled-components";
 
-import { commonStyle, ResetStyle } from "./lib/Styles";
+import { styled, ResetStyle } from "./lib/Styles";
 
 import { RecoilRoot } from "recoil";
 
@@ -15,7 +15,7 @@ app.render(
   <React.StrictMode>
     <RecoilRoot>
       <BrowserRouter>
-        <ThemeProvider theme={commonStyle}>
+        <ThemeProvider theme={styled}>
           <ResetStyle />
           <App />
         </ThemeProvider>

@@ -1,8 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
-import Login from "./pages/Login";
-import Join from "./pages/Join";
-import Todo from "./pages/Todo";
+import { Login, Join, Todo } from "./pages";
 
 const Routers = () => {
   return (

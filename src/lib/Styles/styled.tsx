@@ -1,7 +1,7 @@
 import { DefaultTheme } from "styled-components";
 
-export const commonStyle: DefaultTheme = {
-  color: {
+export const styled: DefaultTheme = {
+  colors: {
     primary: "e3f2fd",
     primaryLight: "ffffff",
     primaryDark: "b1bfca",
