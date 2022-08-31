@@ -17,7 +17,12 @@ const Title = styled.h1(
   color:${theme.colors.font};
   font-size: 3.5rem;
   text-align:center;
-  padding:2rem;
+  padding:1.5rem;
+  p{
+    margin-top:1rem;
+    font-size:2rem;
+    letter-spacing:1rem;
+  }
 `
 );
 
@@ -26,7 +31,6 @@ const ContentContainer = styled.div`
   height: 20rem;
   border: 1px solid ${({ theme }) => theme.colors.primaryDark};
   border-radius: 10%;
-  padding: 1rem;
   flex-direction: column;
 `;
 
@@ -78,7 +82,10 @@ const Login = () => {
 
   return (
     <Wrapper>
-      <Title>LOGIN</Title>
+      <Title>
+        WantedfeChallegne
+        <p>LOGIN</p>
+      </Title>
       <ContentContainer>
         <FormContainer>
           <Inner>
