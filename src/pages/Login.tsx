@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useValidation } from "../hooks";
 import styled from "styled-components";
 import { FormContainer } from "../Copmonents";
+import { useEffect, useState } from "react";
 
 const Wrapper = styled.div(
   ({ theme }) => `
@@ -54,20 +55,27 @@ const FromButton = styled(FormContainer.Button)`
   height: 2.5rem;
   background-color: ${({ theme }) => theme.colors.primaryDark};
   border: none;
-  border-radius: 2px;
+  border-radius: 10px;
   font-size: 1.3rem;
   color: ${({ theme }) => theme.colors.primaryLight};
 
-  &:hover {
-    cursor: pointer;
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.secondaryDark};
   }
 `;
 
 const Login = () => {
-  const [UserInputValue, setUserInputValue] = useState({
-    id: "",
-    pw: "",
-  });
+  const { onChangeEmail, onChangePassword, emailValid, passwordValid } = useValidation();
+  const [valid, setValid] = useState(true);
+
+  useEffect(() => {
+    if (passwordValid && emailValid) {
+      setValid(false);
+    } else {
+      setValid(true);
+    }
+  }, [emailValid, passwordValid]);
+
   return (
     <Wrapper>
       <Title>LOGIN</Title>
@@ -75,11 +83,13 @@ const Login = () => {
         <FormContainer>
           <Inner>
             <IdPwWrap>
-              <FromInput placeholder="아이디" type="email"></FromInput>
-              <FromInput placeholder="비밀번호" type="password"></FromInput>
+              <FromInput onChange={onChangeEmail} placeholder="아이디" type="email"></FromInput>
+              <FromInput onChange={onChangePassword} placeholder="비밀번호" type="password"></FromInput>
             </IdPwWrap>
             <ButtonWrap>
-              <FromButton>로그인</FromButton>
+              <FromButton disabled={valid} type="submit">
+                로그인
+              </FromButton>
             </ButtonWrap>
           </Inner>
         </FormContainer>
