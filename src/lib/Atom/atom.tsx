@@ -1,6 +1,11 @@
 import { atom } from "recoil";
 
-export const userInputValueState = atom({
-  key: "userInputValueState",
-  default: { id: "", pw: "" },
+interface AuthState {
+  isLogin: boolean;
+  token: string;
+}
+
+export const AuthState = atom<AuthState>({
+  key: "AuthState",
+  default: { isLogin: false, token: "" },
 });
