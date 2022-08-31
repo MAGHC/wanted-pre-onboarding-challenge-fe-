@@ -39,8 +39,10 @@ export const useFetch = <T, V>() => {
     return res.data;
   };
 
-  const postData = async (url: string): Promise<T> => {
-    const res = await API.post(url);
+  const postData = async (url: string, body: V): Promise<T> => {
+    const res = await API.post(url, {
+      ...body,
+    });
 
     return res.data;
   };
