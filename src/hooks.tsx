@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import React, { useState } from "react";
 import { API } from "./lib/HTTP/API";
 
@@ -29,7 +30,7 @@ export const useValidation = () => {
     checkPw ? setPasswordValid(true) : setPasswordValid(false);
   };
 
-  return { onChangeEmail, onChangePassword, passwordValid, emailValid };
+  return { password, email, onChangeEmail, onChangePassword, passwordValid, emailValid };
 };
 
 export const useFetch = <T, V>() => {
@@ -48,4 +49,24 @@ export const useFetch = <T, V>() => {
   };
 
   return { getDate, postData };
+};
+
+interface LoginResI {
+  message: string;
+  token: string;
+}
+
+interface LoginValuesI {
+  email: string;
+  password: string;
+}
+
+export const useLogin = () => {
+  const { postData } = useFetch();
+
+  const Login = async (body: LoginValuesI) => {
+    return postData(`/users/login`, body);
+  };
+
+  return { Login };
 };

@@ -1,4 +1,4 @@
-import { useValidation } from "../hooks";
+import { useValidation, useLogin } from "../hooks";
 import styled from "styled-components";
 import { FormContainer } from "../Copmonents";
 import { useEffect, useState } from "react";
@@ -69,7 +69,8 @@ const FromButton = styled(FormContainer.Button)`
 `;
 
 const Login = () => {
-  const { onChangeEmail, onChangePassword, emailValid, passwordValid } = useValidation();
+  const { password, email, onChangeEmail, onChangePassword, emailValid, passwordValid } = useValidation();
+  const { Login } = useLogin();
   const [valid, setValid] = useState(true);
 
   useEffect(() => {
@@ -80,6 +81,12 @@ const Login = () => {
     }
   }, [emailValid, passwordValid]);
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const body = { email, password };
+    Login(body);
+  };
+
   return (
     <Wrapper>
       <Title>
@@ -87,7 +94,7 @@ const Login = () => {
         <p>LOGIN</p>
       </Title>
       <ContentContainer>
-        <FormContainer>
+        <FormContainer onSubmit={onSubmit}>
           <Inner>
             <IdPwWrap>
               <FromInput onChange={onChangeEmail} placeholder="아이디" type="email"></FromInput>
