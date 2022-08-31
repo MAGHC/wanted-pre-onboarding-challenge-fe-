@@ -18,6 +18,7 @@ const Title = styled.h1(
   font-size: 3.5rem;
   text-align:center;
   padding:1.5rem;
+  letter-spacing: 0.2rem;
   p{
     margin-top:1rem;
     font-size:2rem;
@@ -28,7 +29,6 @@ const Title = styled.h1(
 
 const ContentContainer = styled.div`
   width: 30rem;
-  height: 20rem;
   border: 1px solid ${({ theme }) => theme.colors.primaryDark};
   border-radius: 10%;
   flex-direction: column;
@@ -48,7 +48,7 @@ const FromInput = styled(FormContainer.Input)`
 `;
 
 const Inner = styled.div`
-  padding: 4rem;
+  padding: 3rem;
 `;
 
 const ButtonWrap = styled.div`
@@ -90,7 +90,7 @@ const Login = () => {
   return (
     <Wrapper>
       <Title>
-        WantedfeChallegne
+        WantedFeChallegne
         <p>LOGIN</p>
       </Title>
       <ContentContainer>
