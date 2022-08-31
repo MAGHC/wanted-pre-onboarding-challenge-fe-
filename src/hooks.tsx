@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { API } from "./lib/HTTP/API";
 
 export const useValidation = () => {
   const [email, setEmail] = useState("");
@@ -29,4 +30,20 @@ export const useValidation = () => {
   };
 
   return { onChangeEmail, onChangePassword, passwordValid, emailValid };
+};
+
+export const useFetch = <T, V>() => {
+  const getDate = async (url: string): Promise<T> => {
+    const res = await API.get(url);
+
+    return res.data;
+  };
+
+  const postData = async (url: string): Promise<T> => {
+    const res = await API.post(url);
+
+    return res.data;
+  };
+
+  return { getDate, postData };
 };
