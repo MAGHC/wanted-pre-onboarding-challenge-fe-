@@ -90,7 +90,7 @@ const Login = () => {
   return (
     <Wrapper>
       <Title>
-        WantedFeChallegne
+        WantedFeChallenge
         <p>LOGIN</p>
       </Title>
       <ContentContainer>
