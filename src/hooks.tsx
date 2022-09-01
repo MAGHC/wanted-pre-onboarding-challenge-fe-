@@ -1,5 +1,6 @@
-import { AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { API } from "./lib/HTTP/API";
 
 export const useValidation = () => {
@@ -62,10 +63,22 @@ interface LoginValuesI {
 }
 
 export const useLogin = () => {
+  const navigate = useNavigate();
   const { postData } = useFetch();
 
   const Login = async (body: LoginValuesI) => {
-    return postData(`/users/login`, body);
+    return postData(`/users/login`, body)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((err: Error | AxiosError) => {
+        if (axios.isAxiosError(err)) {
+          if (err.response?.status === 400) {
+            alert("이메일, 비밀번호를 확인해주세요");
+          }
+          alert("서버연결을 확인해주세요! ");
+        }
+      });
   };
 
   return { Login };

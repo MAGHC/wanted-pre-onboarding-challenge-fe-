@@ -36,7 +36,7 @@ const ContentContainer = styled.div`
 
 const IdPwWrap = styled.div``;
 
-const FromInput = styled(FormContainer.Input)`
+const FromInput = styled.input`
   display: block;
   width: 96%;
   height: 2.5rem;
@@ -54,7 +54,7 @@ const Inner = styled.div`
 const ButtonWrap = styled.div`
   margin-top: 3rem;
 `;
-const FromButton = styled(FormContainer.Button)`
+const FromButton = styled.button`
   width: 100%;
   height: 2.5rem;
   background-color: ${({ theme }) => theme.colors.primaryDark};
@@ -90,7 +90,7 @@ const Login = () => {
   return (
     <Wrapper>
       <Title>
-        WantedFeChallenge
+        Wanted Fe Challenge
         <p>LOGIN</p>
       </Title>
       <ContentContainer>
