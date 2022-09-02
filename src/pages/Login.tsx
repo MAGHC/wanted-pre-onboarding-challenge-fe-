@@ -29,7 +29,7 @@ const Title = styled.h1(
 const FormContainer = styled.form``;
 
 const ContentContainer = styled.div`
-  width: 30rem;
+  width: 38rem;
   border: 1px solid ${({ theme }) => theme.colors.primaryDark};
   border-radius: 10%;
   flex-direction: column;
@@ -40,7 +40,7 @@ const IdPwWrap = styled.div``;
 const FromInput = styled.input`
   display: block;
   width: 96%;
-  height: 2.5rem;
+  height: 5rem;
   box-shadow: none;
 
   &:focus {
@@ -57,7 +57,7 @@ const ButtonWrap = styled.div`
 `;
 const FromButton = styled.button`
   width: 100%;
-  height: 2.5rem;
+  height: 5rem;
   background-color: ${({ theme }) => theme.colors.primaryDark};
   border: none;
   border-radius: 10px;
