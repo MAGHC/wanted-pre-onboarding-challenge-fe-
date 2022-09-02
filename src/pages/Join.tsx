@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useValidation } from "@/hooks";
+import { useValidation } from "./../hooks";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -8,7 +8,7 @@ const Wrapper = styled.div`
 `;
 
 const ContentContainer = styled.div`
-  width: 25rem;
+  width: 30rem;
   flex-direction: column;
   text-align: center;
 `;
@@ -37,21 +37,19 @@ const Btn = styled.button`
 `;
 
 const Join = () => {
-  const {} = useValidation();
+  const { password, email, onChangeEmail, onChangePassword, passwordValid, emailValid, onChangePasswordConfirm, pwConfrimBoolean } = useValidation();
 
   return (
     <Wrapper>
       <ContentContainer>
         <Title>회원가입</Title>
         <FormContainer>
-          <Input id="id" placeholder="id&&email" type="email"></Input>
-          {<label htmlFor="id">이메일 형식을 확인해주세요</label>}
-          <Input id="nic" placeholder="닉네임" type="text"></Input>
-          {<Label htmlFor="nic">확인용</Label>}
-          <Input id="pw" placeholder="비밀번호" type="password"></Input>
-          {<label htmlFor="pw">8자리 이상의 숫자 1 문자 1 개가 포함되게 구성해주세요</label>}
-          <Input id="pwCon" placeholder="비밀번호 확인" type="password"></Input>
-          {<label htmlFor="pwCon">비밀 번호가 다릅니다</label>}
+          <Input onChange={onChangeEmail} id="id" placeholder="id&&email" type="email"></Input>
+          {!emailValid && <label htmlFor="id">이메일 형식을 확인해주세요</label>}
+          <Input onChange={onChangePassword} id="pw" placeholder="비밀번호" type="password"></Input>
+          {!passwordValid && <label htmlFor="pw">8자리 이상의 숫자 1 문자 1 개가 포함되게 구성해주세요</label>}
+          <Input onChange={onChangePasswordConfirm} id="pwCon" placeholder="비밀번호 확인" type="password"></Input>
+          {!pwConfrimBoolean && <label htmlFor="pwCon">비밀 번호가 다릅니다</label>}
           <Btn>회원가입</Btn>
         </FormContainer>
       </ContentContainer>

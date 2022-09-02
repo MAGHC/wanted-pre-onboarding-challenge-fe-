@@ -7,7 +7,9 @@ export const useValidation = () => {
   const [email, setEmail] = useState("");
   const [emailValid, setEmailValid] = useState(false);
   const [password, setPassword] = useState("");
+  const [passwodConfirmValue, setPasswordConFirmValue] = useState("");
   const [passwordValid, setPasswordValid] = useState(false);
+  const [pwConfrimBoolean, setPwConfrimBoolean] = useState(false);
 
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -25,13 +27,22 @@ export const useValidation = () => {
     setPassword(value);
 
     const PWREG = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-
     const checkPw = value.match(PWREG);
 
     checkPw ? setPasswordValid(true) : setPasswordValid(false);
   };
 
-  return { password, email, onChangeEmail, onChangePassword, passwordValid, emailValid };
+  const onChangePasswordConfirm = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    setPasswordConFirmValue(value);
+
+    const checkpw = value === password;
+    console.log(pwConfrimBoolean);
+    checkpw ? setPwConfrimBoolean(true) : setPwConfrimBoolean(false);
+  };
+
+  return { password, email, onChangeEmail, onChangePassword, passwordValid, emailValid, onChangePasswordConfirm, pwConfrimBoolean };
 };
 
 export const useFetch = <T, V>() => {
