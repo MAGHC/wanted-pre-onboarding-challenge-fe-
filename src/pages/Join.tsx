@@ -25,16 +25,9 @@ const Input = styled.input`
   height: 3rem;
   width: 100%;
   display: block;
-  label {
-    opacity: 0;
-    transition: all 0.2s;
-  }
-  &:disabled {
-    label {
-      opacity: 1;
-    }
-  }
 `;
+
+const Label = styled.label``;
 
 const Btn = styled.button`
   display: block;
@@ -52,13 +45,13 @@ const Join = () => {
         <Title>회원가입</Title>
         <FormContainer>
           <Input id="id" placeholder="id&&email" type="email"></Input>
-          <label htmlFor="id">이메일 형식을 확인해주세요</label>
+          {<label htmlFor="id">이메일 형식을 확인해주세요</label>}
           <Input id="nic" placeholder="닉네임" type="text"></Input>
-          <label htmlFor="nic">확인용</label>
+          {<Label htmlFor="nic">확인용</Label>}
           <Input id="pw" placeholder="비밀번호" type="password"></Input>
-          <label htmlFor="pw">8자리 이상의 숫자 1 문자 1 개가 포함되게 구성해주세요</label>
+          {<label htmlFor="pw">8자리 이상의 숫자 1 문자 1 개가 포함되게 구성해주세요</label>}
           <Input id="pwCon" placeholder="비밀번호 확인" type="password"></Input>
-          <label htmlFor="pwCon">비밀 번호가 다릅니다</label>
+          {<label htmlFor="pwCon">비밀 번호가 다릅니다</label>}
           <Btn>회원가입</Btn>
         </FormContainer>
       </ContentContainer>
