@@ -68,7 +68,7 @@ interface LoginResI {
   token: string;
 }
 
-interface LoginValuesI {
+interface LoginJoinValuesI {
   email: string;
   password: string;
 }
@@ -77,7 +77,7 @@ export const useLogin = () => {
   const navigate = useNavigate();
   const { postData } = useFetch();
 
-  const Login = async (body: LoginValuesI) => {
+  const Login = async (body: LoginJoinValuesI) => {
     return postData(`/users/login`, body)
       .then(() => {
         navigate("/");
@@ -93,4 +93,29 @@ export const useLogin = () => {
   };
 
   return { Login };
+};
+
+export const useJoin = () => {
+  const navigate = useNavigate();
+  const { postData } = useFetch();
+  const join = async (body: LoginJoinValuesI) => {
+    return postData(`/users/create`, body)
+      .then(() => {
+        alert("가입해주셔서 감사합니다 환영합니다");
+        navigate("/");
+      })
+      .catch((err: Error | AxiosError) => {
+        if (axios.isAxiosError(err)) {
+          if (err.response?.status === 400) {
+            alert("양식을 다시 한번 확인해주세요");
+          } else if (err.response?.status === 409) {
+            alert("이미 존재하는 아이디입니다");
+          } else {
+            alert("서버와의 연결을 확인해주세요");
+          }
+        }
+      });
+  };
+
+  return { join };
 };

@@ -1,5 +1,7 @@
+import { FormEvent, useEffect, useState } from "react";
 import styled from "styled-components";
 import { useValidation } from "./../hooks";
+import { useJoin } from "./../hooks";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -37,20 +39,33 @@ const Btn = styled.button`
 `;
 
 const Join = () => {
+  const [valid, setValid] = useState(false);
   const { password, email, onChangeEmail, onChangePassword, passwordValid, emailValid, onChangePasswordConfirm, pwConfrimBoolean } = useValidation();
+  const { join } = useJoin();
+
+  useEffect(() => {
+    const check = pwConfrimBoolean && passwordValid && emailValid;
+    check ? setValid(true) : setValid(false);
+  }, [pwConfrimBoolean, passwordValid, emailValid]);
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const body = { email, password };
+    join(body);
+  };
 
   return (
     <Wrapper>
       <ContentContainer>
         <Title>회원가입</Title>
-        <FormContainer>
+        <FormContainer onSubmit={onSubmit}>
           <Input onChange={onChangeEmail} id="id" placeholder="id&&email" type="email"></Input>
           {!emailValid && <label htmlFor="id">이메일 형식을 확인해주세요</label>}
           <Input onChange={onChangePassword} id="pw" placeholder="비밀번호" type="password"></Input>
           {!passwordValid && <label htmlFor="pw">8자리 이상의 숫자 1 문자 1 개가 포함되게 구성해주세요</label>}
           <Input onChange={onChangePasswordConfirm} id="pwCon" placeholder="비밀번호 확인" type="password"></Input>
           {!pwConfrimBoolean && <label htmlFor="pwCon">비밀 번호가 다릅니다</label>}
-          <Btn>회원가입</Btn>
+          <Btn disabled={!valid}>회원가입</Btn>
         </FormContainer>
       </ContentContainer>
     </Wrapper>
