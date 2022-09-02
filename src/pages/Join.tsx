@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { FormContainer } from "@/Copmonents";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -7,10 +6,14 @@ const Wrapper = styled.div`
   ${({ theme }) => theme.mixin.center()}
 `;
 
-const FromContainer = styled.``
+const FormContainer = styled.form``;
 
 const Join = () => {
-  return <Wrapper>테스트</Wrapper>;
+  return (
+    <Wrapper>
+      <FormContainer></FormContainer>
+    </Wrapper>
+  );
 };
 
 export default Join;

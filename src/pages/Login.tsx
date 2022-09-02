@@ -1,6 +1,5 @@
 import { useValidation, useLogin } from "../hooks";
 import styled from "styled-components";
-import { FormContainer } from "../Copmonents";
 import { useEffect, useState } from "react";
 
 const Wrapper = styled.div(
@@ -26,6 +25,8 @@ const Title = styled.h1(
   }
 `
 );
+
+const FormContainer = styled.form``;
 
 const ContentContainer = styled.div`
   width: 30rem;
