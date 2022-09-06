@@ -83,9 +83,9 @@ export const useLogin = () => {
   const Login = async (body: LoginJoinValuesI) => {
     return postData(`/users/login`, body)
       .then(() => {
-        setAuthState({ isLogin: true });
+        setAuthState((pre) => ({ ...pre, isLogin: true }));
 
-        navigate("/");
+        navigate("/todo");
       })
       .catch((err: Error | AxiosError) => {
         if (axios.isAxiosError(err)) {

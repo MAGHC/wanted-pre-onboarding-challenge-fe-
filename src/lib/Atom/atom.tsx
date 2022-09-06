@@ -1,4 +1,4 @@
-import { atom, useSetRecoilState } from "recoil";
+import { atom } from "recoil";
 
 interface AuthStateI {
   isLogin: boolean;
