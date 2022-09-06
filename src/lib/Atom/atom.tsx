@@ -1,10 +1,9 @@
 import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
+const { persistAtom } = recoilPersist();
 
-interface AuthStateI {
-  isLogin: boolean;
-}
-
-export const AuthState = atom<AuthStateI>({
+export const AuthState = atom({
   key: "AuthState",
   default: { isLogin: false },
+  effects_UNSTABLE: [persistAtom],
 });

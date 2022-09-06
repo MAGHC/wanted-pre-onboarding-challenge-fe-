@@ -83,7 +83,7 @@ export const useLogin = () => {
   const Login = async (body: LoginJoinValuesI) => {
     return postData(`/users/login`, body)
       .then(() => {
-        setAuthState((pre) => ({ ...pre, isLogin: true }));
+        setAuthState(() => ({ isLogin: true }));
 
         navigate("/todo");
       })
