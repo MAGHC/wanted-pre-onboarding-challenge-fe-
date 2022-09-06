@@ -2,6 +2,8 @@ import axios, { AxiosError } from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API } from "./lib/HTTP/API";
+import { AuthState } from "./lib/Atom/Atom";
+import { useSetRecoilState } from "recoil";
 
 export const useValidation = () => {
   const [email, setEmail] = useState("");
@@ -76,10 +78,13 @@ interface LoginJoinValuesI {
 export const useLogin = () => {
   const navigate = useNavigate();
   const { postData } = useFetch();
+  const setAuthState = useSetRecoilState(AuthState);
 
   const Login = async (body: LoginJoinValuesI) => {
     return postData(`/users/login`, body)
       .then(() => {
+        setAuthState({ isLogin: true });
+
         navigate("/");
       })
       .catch((err: Error | AxiosError) => {

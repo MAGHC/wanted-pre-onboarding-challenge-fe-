@@ -1,11 +1,10 @@
-import { atom } from "recoil";
+import { atom, useSetRecoilState } from "recoil";
 
-interface AuthState {
+interface AuthStateI {
   isLogin: boolean;
-  token: string;
 }
 
-export const AuthState = atom<AuthState>({
+export const AuthState = atom<AuthStateI>({
   key: "AuthState",
-  default: { isLogin: false, token: "" },
+  default: { isLogin: false },
 });

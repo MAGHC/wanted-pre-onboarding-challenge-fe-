@@ -6,7 +6,6 @@ export const API = axios.create({ baseURL: BASE_URL, timeout: 1000, headers: { "
 
 API.interceptors.response.use(
   (res) => {
-    console.log(res);
     if (res.data.token) {
       localStorage.setItem("token", res.data.token);
     }
