@@ -10,17 +10,23 @@ import { styled, ResetStyle } from "./lib/Styles";
 
 import { RecoilRoot } from "recoil";
 
+import { QueryClientProvider, QueryClient } from "react-query";
+
+const queryClient = new QueryClient();
+
 const app = ReactDOM.createRoot(document.getElementById("app") as HTMLElement);
 app.render(
   <React.StrictMode>
-    <RecoilRoot>
-      <BrowserRouter>
-        <ThemeProvider theme={styled}>
-          <ResetStyle />
-          <App />
-        </ThemeProvider>
-      </BrowserRouter>
-    </RecoilRoot>
+    <QueryClientProvider client={queryClient}>
+      <RecoilRoot>
+        <BrowserRouter>
+          <ThemeProvider theme={styled}>
+            <ResetStyle />
+            <App />
+          </ThemeProvider>
+        </BrowserRouter>
+      </RecoilRoot>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 
