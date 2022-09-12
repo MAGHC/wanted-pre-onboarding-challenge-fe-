@@ -26,12 +26,12 @@ const EditBtn = styled.button`
   margin: 0 2rem;
 `;
 
-const TodoItem = () => {
+const TodoItem = ({ itemTitle, itemContent }: { itemTitle: string; itemContent: string }) => {
   return (
     <Wrapper>
       <ItemWrappter>
-        <ItemTitle>제목</ItemTitle>
-        <Item>내용</Item>
+        <ItemTitle>{itemTitle}</ItemTitle>
+        <Item>{itemContent}</Item>
       </ItemWrappter>
       <EditBtn>수정</EditBtn>
       <DelteBtn>삭제</DelteBtn>

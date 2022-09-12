@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import TodoItem from "./TodoItem";
 import { useMemo } from "../hooks";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -32,7 +32,13 @@ const SubmitBtn = styled.button``;
 const Todo = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const { createTodo } = useMemo();
+  const { createTodo, getTodo } = useMemo();
+  const [todolist, setTodoList] = useState([]);
+
+  useEffect(() => {
+    getTodo().then((data) => setTodoList(data.data));
+    console.log(todolist);
+  }, []);
 
   const titleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -46,6 +52,11 @@ const Todo = () => {
     createTodo({ title, content });
   };
 
+  interface TodoitemI {
+    title: string;
+    content: string;
+  }
+
   return (
     <Wrapper>
       <Title>할일을적어주세요</Title>
@@ -55,10 +66,10 @@ const Todo = () => {
         <SubmitBtn>작성</SubmitBtn>
       </FormContainer>
       <TodoCard>
-        <TodoItem></TodoItem>
-        <TodoItem></TodoItem>
-        <TodoItem></TodoItem>
-        <TodoItem></TodoItem>
+        {todolist.length > 0 &&
+          todolist.map((item: TodoitemI) => {
+            return <TodoItem itemTitle={item.title} itemContent={item.content}></TodoItem>;
+          })}
       </TodoCard>
     </Wrapper>
   );
