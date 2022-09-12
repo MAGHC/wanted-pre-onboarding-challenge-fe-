@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import TodoItem from "./TodoItem";
+import { useMemo } from "../hooks";
+import { useState } from "react";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -28,12 +30,28 @@ const Input = styled.input`
 const SubmitBtn = styled.button``;
 
 const Todo = () => {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const { createTodo } = useMemo();
+
+  const titleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
+  const contentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setContent(e.target.value);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    createTodo({ title, content });
+  };
+
   return (
     <Wrapper>
       <Title>할일을적어주세요</Title>
-      <FormContainer>
-        <Input type="text" placeholder="제목"></Input>
-        <Input type="text" placeholder="내용"></Input>
+      <FormContainer onSubmit={handleSubmit}>
+        <Input type="text" onChange={titleChange} value={title} name="title" placeholder="제목"></Input>
+        <Input type="text" onChange={contentChange} value={content} name="content" placeholder="내용"></Input>
         <SubmitBtn>작성</SubmitBtn>
       </FormContainer>
       <TodoCard>

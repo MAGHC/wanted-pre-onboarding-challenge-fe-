@@ -133,7 +133,9 @@ interface TodoCreateValue {
 export const useMemo = () => {
   const { postData, getDate } = useFetch();
   const createTodo = async (body: TodoCreateValue) => {
-    return postData("/todos", body);
+    return postData("/todos", body).then((res) => {
+      console.log(res);
+    });
   };
   const getTodo = async () => {
     return getDate("/todos/");
