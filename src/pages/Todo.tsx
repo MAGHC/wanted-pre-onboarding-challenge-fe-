@@ -25,12 +25,16 @@ const Input = styled.input`
   margin: 2rem 0;
 `;
 
+const SubmitBtn = styled.button``;
+
 const Todo = () => {
   return (
     <Wrapper>
       <Title>할일을적어주세요</Title>
       <FormContainer>
-        <Input type="text"></Input>
+        <Input type="text" placeholder="제목"></Input>
+        <Input type="text" placeholder="내용"></Input>
+        <SubmitBtn>작성</SubmitBtn>
       </FormContainer>
       <TodoCard>
         <TodoItem></TodoItem>

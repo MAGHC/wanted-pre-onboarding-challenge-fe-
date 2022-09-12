@@ -124,3 +124,18 @@ export const useJoin = () => {
 
   return { join };
 };
+
+interface TodoCreateValue {
+  title: string;
+  content: string;
+}
+
+const useMemo = () => {
+  const { postData, getDate } = useFetch();
+  const createTodo = async (body: TodoCreateValue) => {
+    return postData("/todos", body);
+  };
+  const getTodo = async () => {
+    return getDate("/todos/:id");
+  };
+};

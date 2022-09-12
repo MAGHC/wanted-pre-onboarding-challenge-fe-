@@ -6,6 +6,13 @@ const Wrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.primaryDark};
 `;
 
+const ItemWrappter = styled.div``;
+
+const ItemTitle = styled.p`
+  font-size: 2rem;
+  margin: 0 2rem;
+`;
+
 const Item = styled.p`
   font-size: 2rem;
   margin: 0 2rem;
@@ -22,7 +29,10 @@ const EditBtn = styled.button`
 const TodoItem = () => {
   return (
     <Wrapper>
-      <Item>간단한 메모 내용</Item>
+      <ItemWrappter>
+        <ItemTitle>제목</ItemTitle>
+        <Item>내용</Item>
+      </ItemWrappter>
       <EditBtn>수정</EditBtn>
       <DelteBtn>삭제</DelteBtn>
     </Wrapper>
