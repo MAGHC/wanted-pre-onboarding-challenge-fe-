@@ -2,15 +2,10 @@ import axios from "axios";
 
 export const BASE_URL = "http://localhost:8080";
 
-interface Token {
-  token: string;
-}
-
 const getToken = () => {
   const data = localStorage.getItem("token");
   if (data) {
-    const { token } = JSON.parse(data) as Token;
-    return token;
+    return data;
   }
   return false;
 };
