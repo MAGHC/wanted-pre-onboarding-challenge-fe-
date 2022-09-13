@@ -153,9 +153,7 @@ interface TodoEditValue {
 export const useMemo = () => {
   const { postData, getDate, putData, deleteData } = useFetch();
   const createTodo = async (body: TodoCreateValue) => {
-    return postData("/todos", body).then((res) => {
-      console.log(res);
-    });
+    return postData("/todos", body);
   };
   const getTodo = async () => {
     return getDate("/todos/");
