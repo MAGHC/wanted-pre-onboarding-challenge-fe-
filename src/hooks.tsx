@@ -142,8 +142,16 @@ interface TodoCreateValue {
   content: string;
 }
 
+interface TodoEditValue {
+  id: string;
+  body: {
+    title: string;
+    content: string;
+  };
+}
+
 export const useMemo = () => {
-  const { postData, getDate } = useFetch();
+  const { postData, getDate, putData, deleteData } = useFetch();
   const createTodo = async (body: TodoCreateValue) => {
     return postData("/todos", body).then((res) => {
       console.log(res);
@@ -153,5 +161,13 @@ export const useMemo = () => {
     return getDate("/todos/");
   };
 
-  return { createTodo, getTodo };
+  const editTodo = async ({ id, body }: TodoEditValue) => {
+    return putData(`todos/${id}`, body);
+  };
+
+  const deletTodo = async (id: string) => {
+    return deleteData(`todos/${id}`);
+  };
+
+  return { createTodo, getTodo, editTodo, deletTodo };
 };
