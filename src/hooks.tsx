@@ -156,7 +156,9 @@ export const useMemo = () => {
     return postData("/todos", body);
   };
   const getTodo = async () => {
-    return getDate("/todos/");
+    const response = (await getDate("/todos/")) as any;
+    const data = await response.data;
+    return data;
   };
 
   const editTodo = async ({ id, body }: TodoEditValue) => {
@@ -167,5 +169,5 @@ export const useMemo = () => {
     return deleteData(`todos/${id}`);
   };
 
-  return { createTodo, getTodo, editTodo, deletTodo };
+  return { createTodo, editTodo, deletTodo, getTodo };
 };

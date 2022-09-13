@@ -1,11 +1,7 @@
 import styled from "styled-components";
 import TodoItem from "./TodoItem";
 import { useMemo } from "../hooks";
-import React, { useState, useEffect } from "react";
-
-interface TodoI {
-  id: string;
-}
+import React, { useEffect, useState } from "react";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -34,15 +30,14 @@ const Input = styled.input`
 const SubmitBtn = styled.button``;
 
 const Todo = () => {
+  const [todolist, setTodolist] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const { createTodo, getTodo, editTodo, deletTodo } = useMemo();
-  const [todolist, setTodoList] = useState([]);
+  const { createTodo, editTodo, deletTodo, getTodo } = useMemo();
 
   useEffect(() => {
-    getTodo().then((data) => setTodoList(data.data));
-    console.log(todolist);
-  }, [todolist]);
+    getTodo().then((res) => setTodolist(res));
+  }, [getTodo]);
 
   const titleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
