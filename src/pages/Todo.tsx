@@ -3,6 +3,10 @@ import TodoItem from "./TodoItem";
 import { useMemo } from "../hooks";
 import React, { useState, useEffect } from "react";
 
+interface TodoI {
+  id: string;
+}
+
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
@@ -38,7 +42,7 @@ const Todo = () => {
   useEffect(() => {
     getTodo().then((data) => setTodoList(data.data));
     console.log(todolist);
-  }, []);
+  }, [todolist]);
 
   const titleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -54,11 +58,14 @@ const Todo = () => {
 
   const handleEditSubmit = () => {};
 
-  const handleDeleteSubmit = () => {};
+  const handleDeleteSubmit = (id: string) => {
+    deletTodo(id);
+  };
 
   interface TodoitemI {
     title: string;
     content: string;
+    id: string;
   }
 
   return (
@@ -72,7 +79,7 @@ const Todo = () => {
       <TodoCard>
         {todolist.length > 0 &&
           todolist.map((item: TodoitemI) => {
-            return <TodoItem itemTitle={item.title} itemContent={item.content}></TodoItem>;
+            return <TodoItem handleDelete={handleDeleteSubmit} id={item.id} key={item.id} itemTitle={item.title} itemContent={item.content}></TodoItem>;
           })}
       </TodoCard>
     </Wrapper>

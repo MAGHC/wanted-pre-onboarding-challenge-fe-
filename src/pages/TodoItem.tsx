@@ -26,7 +26,7 @@ const EditBtn = styled.button`
   margin: 0 2rem;
 `;
 
-const TodoItem = ({ itemTitle, itemContent }: { itemTitle: string; itemContent: string }) => {
+const TodoItem = ({ id, itemTitle, itemContent, handleDelete }: { id: string; itemTitle: string; itemContent: string; handleDelete: Function }) => {
   return (
     <Wrapper>
       <ItemWrappter>
@@ -34,7 +34,7 @@ const TodoItem = ({ itemTitle, itemContent }: { itemTitle: string; itemContent: 
         <Item>{itemContent}</Item>
       </ItemWrappter>
       <EditBtn>수정</EditBtn>
-      <DelteBtn>삭제</DelteBtn>
+      <DelteBtn onClick={() => handleDelete(id)}>삭제</DelteBtn>
     </Wrapper>
   );
 };
