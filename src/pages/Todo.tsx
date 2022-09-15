@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import TodoItem from "./TodoItem";
+import TodoItem from "../Copmonents/TodoItem";
 import { useMemo } from "../hooks";
 import React, { useEffect, useState } from "react";
 
