@@ -3,6 +3,14 @@ import TodoItem from "../Copmonents/TodoItem";
 import { useMemo } from "../hooks";
 import React, { useEffect, useState } from "react";
 
+interface TodoEditValue {
+  id: string;
+  body: {
+    title: string;
+    content: string;
+  };
+}
+
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
@@ -51,7 +59,9 @@ const Todo = () => {
     createTodo({ title, content });
   };
 
-  const handleEditSubmit = () => {};
+  const handleEditSubmit = ({ id, body }: TodoEditValue) => {
+    editTodo({ id, body });
+  };
 
   const handleDeleteSubmit = (id: string) => {
     deletTodo(id);
@@ -74,7 +84,16 @@ const Todo = () => {
       <TodoCard>
         {todolist.length > 0 &&
           todolist.map((item: TodoitemI) => {
-            return <TodoItem handleDelete={handleDeleteSubmit} id={item.id} key={item.id} itemTitle={item.title} itemContent={item.content}></TodoItem>;
+            return (
+              <TodoItem
+                handleEdit={handleEditSubmit}
+                handleDelete={handleDeleteSubmit}
+                id={item.id}
+                key={item.id}
+                itemTitle={item.title}
+                itemContent={item.content}
+              ></TodoItem>
+            );
           })}
       </TodoCard>
     </Wrapper>
