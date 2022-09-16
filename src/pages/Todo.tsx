@@ -2,6 +2,7 @@ import styled from "styled-components";
 import TodoItem from "../Copmonents/TodoItem";
 import { useMemo } from "../hooks";
 import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 
 interface TodoEditValue {
   id: string;
@@ -19,6 +20,7 @@ const Wrapper = styled.div`
 `;
 
 const TodoCard = styled.div`
+  font-size: 2rem;
   width: 60rem;
   border: 1px solid ${({ theme }) => theme.colors.secondaryDark};
   text-align: center;
@@ -43,9 +45,18 @@ const Todo = () => {
   const [content, setContent] = useState("");
   const { createTodo, editTodo, deletTodo, getTodo } = useMemo();
 
+  const useGetTodo = () => {
+    return useQuery(["todos"], getTodo);
+  };
+
+  const { status, data } = useGetTodo();
+
   useEffect(() => {
-    getTodo().then((res) => setTodolist(res));
-  }, [getTodo]);
+    if (status === "success") {
+      setTodolist(data);
+    }
+    console.log(data);
+  }, [data]);
 
   const titleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -82,19 +93,21 @@ const Todo = () => {
         <SubmitBtn>작성</SubmitBtn>
       </FormContainer>
       <TodoCard>
-        {todolist.length > 0 &&
-          todolist.map((item: TodoitemI) => {
-            return (
-              <TodoItem
-                handleEdit={handleEditSubmit}
-                handleDelete={handleDeleteSubmit}
-                id={item.id}
-                key={item.id}
-                itemTitle={item.title}
-                itemContent={item.content}
-              ></TodoItem>
-            );
-          })}
+        {status === "loading"
+          ? "로딩중..."
+          : todolist.length > 0 &&
+            todolist.map((item: TodoitemI) => {
+              return (
+                <TodoItem
+                  handleEdit={handleEditSubmit}
+                  handleDelete={handleDeleteSubmit}
+                  id={item.id}
+                  key={item.id}
+                  itemTitle={item.title}
+                  itemContent={item.content}
+                ></TodoItem>
+              );
+            })}
       </TodoCard>
     </Wrapper>
   );
